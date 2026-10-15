@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Customs | Resolved Board</title>
+  <style>
+    :root { color-scheme: light; --navy:#173a68; --blue:#3979b4; --ice:#eef6fc; --line:#cadced; --gold:#e8bd50; --muted:#607891; --red:#a85545; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; padding:28px; color:#183557; background:linear-gradient(150deg,#f7fbff,#eaf3fb); font:15px/1.5 "DM Sans","Trebuchet MS",sans-serif; }
+    main { max-width:960px; margin:0 auto; }
+    .mast { display:flex; align-items:center; justify-content:space-between; gap:18px; padding-bottom:18px; border-bottom:1px solid var(--line); }
+    .eyebrow { margin:0 0 4px; color:var(--muted); font-size:10px; font-weight:700; text-transform:uppercase; }
+    h1,h2 { margin:0; color:var(--navy); font-family:Georgia,serif; font-weight:400; }
+    h1 { font-size:32px; }
+    h2 { margin-bottom:6px; font-size:20px; }
+    .stamp { padding:7px 10px; border:1px solid #dfc77f; color:#795f26; background:#fff8df; font-size:11px; font-weight:700; text-transform:uppercase; }
+    .blocker { margin:22px 0; padding:15px 17px; border-left:4px solid var(--gold); background:#fff8e4; }
+    .blocker strong { display:block; margin-bottom:3px; color:#705723; }
+    .blocker p { margin:0; color:#6b695f; }
+    .cards { display:grid; gap:12px; }
+    article { padding:17px; border:1px solid var(--line); border-radius:6px; background:rgba(255,255,255,.82); }
+    .ticket-head { display:flex; align-items:center; justify-content:space-between; gap:14px; }
+    .status { padding:4px 8px; border:1px solid #e3c9a1; color:#805d24; background:#fff7e8; font-size:10px; font-weight:700; text-transform:uppercase; }
+    p { margin:0; color:var(--muted); }
+    .result { margin-top:8px; }
+    .evidence { margin-top:10px; padding-top:9px; border-top:1px dashed var(--line); font-size:12px; }
+    code { color:var(--blue); font-family:Consolas,monospace; font-size:11px; overflow-wrap:anywhere; }
+    .screenshots { margin-top:24px; padding:18px; border:1px dashed #aabfd1; color:#607891; background:var(--ice); }
+    .screenshots h2 { font-size:18px; }
+    .screenshots p { margin-top:6px; }
+    .link { display:inline-block; margin-top:16px; color:var(--blue); font-weight:700; }
+    @media(max-width:520px) { body{padding:18px 14px}.mast{align-items:flex-start}h1{font-size:27px}.stamp{font-size:9px} }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="mast">
+      <div><p class="eyebrow">Campus Customs / Run record</p><h1>Resolved board</h1></div>
+      <span class="stamp">No tickets resolved</span>
+    </header>
+    <section class="blocker" role="status">
+      <strong>Runs paused: model credentials required</strong>
+      <p>The backend has no <code>OPENAI_API_KEY</code>. Ticket 101's dashboard attempt stopped after Boss fetched its MCP context and before any specialist ran. Tickets 102 and 103 were not run after that failure. No solved-ticket screenshots are available; this page does not substitute unsolved screenshots for them.</p>
+    </section>
+    <section class="cards" aria-label="Current ticket run status">
+      <article><div class="ticket-head"><h2>Ticket 101 / Bulldog tee</h2><span class="status">Open</span></div><p class="result">Boss read the ticket context. The model request failed before specialist delegation.</p><p class="evidence">MCP tool: <code>get_ticket_101_tee_reprint_context</code><br>Approval: none<br>Cash movement: $0.00</p></article>
+      <article><div class="ticket-head"><h2>Ticket 102 / Rent notice</h2><span class="status">Open</span></div><p class="result">Not run after ticket 101 could not initialize its model request.</p><p class="evidence">Agents/tools: none<br>Approval: none<br>Cash movement: $0.00</p></article>
+      <article><div class="ticket-head"><h2>Ticket 103 / Bulk hoodie request</h2><span class="status">Open</span></div><p class="result">Not run after reset. Earlier pre-reset activity is excluded from this run.</p><p class="evidence">Agents/tools: none<br>Approval: none<br>Cash movement: $0.00</p></article>
+    </section>
+    <section class="screenshots"><h2>Solved-ticket screenshots</h2><p>Pending successful agent runs. Capture one dashboard screenshot for each ticket after the model credential is configured and the ticket reaches resolved status.</p></section>
+    <a class="link" href="http://localhost:5173/">Open the live agent dashboard</a>
+  </main>
+</body>
+</html>

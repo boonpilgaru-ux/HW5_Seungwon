@@ -1,0 +1,730 @@
+[
+  {
+    "timestamp": "2026-10-14T23:59:43.031255+00:00",
+    "run_id": "6c642302-b524-4842-b3dc-96724d0d3ca8",
+    "event_type": "run_started",
+    "actor": "Boss",
+    "action": "Started Campus Customs review for ticket 103",
+    "ticket_id": 103,
+    "model": "openai:gpt-4o-mini"
+  },
+  {
+    "timestamp": "2026-10-14T23:59:44.931314+00:00",
+    "run_id": "6c642302-b524-4842-b3dc-96724d0d3ca8",
+    "event_type": "tool_call",
+    "actor": "Boss",
+    "action": "Called MCP tool get_ticket_103_bulk_hoodie_context",
+    "tool_name": "get_ticket_103_bulk_hoodie_context",
+    "arguments": {}
+  },
+  {
+    "timestamp": "2026-10-14T23:59:44.944494+00:00",
+    "run_id": "6c642302-b524-4842-b3dc-96724d0d3ca8",
+    "event_type": "tool_result",
+    "actor": "Boss",
+    "action": "Received result from MCP tool get_ticket_103_bulk_hoodie_context",
+    "tool_name": "get_ticket_103_bulk_hoodie_context",
+    "output": {
+      "ticket": {
+        "id": 103,
+        "type": "price_override",
+        "requester": "Yale AI Club",
+        "subject": "Bulk hoodie discount",
+        "sku": "CC-HOOD-NAVY",
+        "size": "M",
+        "qty": 20,
+        "lease_id": null,
+        "invoice_id": null,
+        "status": "open",
+        "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+        "created_at": "2026-08-31T16:55:00-04:00"
+      },
+      "inventory": {
+        "sku": "CC-HOOD-NAVY",
+        "name": "Basic Hoodie Big Yale",
+        "size": "M",
+        "qty": 8,
+        "location": "Aisle A"
+      },
+      "pricing": {
+        "sku": "CC-HOOD-NAVY",
+        "unit_cost": 22.0,
+        "list_price": 58.0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-14T23:59:44.947208+00:00",
+    "run_id": "6c642302-b524-4842-b3dc-96724d0d3ca8",
+    "event_type": "agent_action",
+    "actor": "Boss",
+    "action": "Reviewed MCP context for ticket 103",
+    "ticket_context": {
+      "ticket": {
+        "id": 103,
+        "type": "price_override",
+        "requester": "Yale AI Club",
+        "subject": "Bulk hoodie discount",
+        "sku": "CC-HOOD-NAVY",
+        "size": "M",
+        "qty": 20,
+        "lease_id": null,
+        "invoice_id": null,
+        "status": "open",
+        "notes": "Student org wants 20 hoodies, size M, asking for a bulk discount.",
+        "created_at": "2026-08-31T16:55:00-04:00"
+      },
+      "inventory": {
+        "sku": "CC-HOOD-NAVY",
+        "name": "Basic Hoodie Big Yale",
+        "size": "M",
+        "qty": 8,
+        "location": "Aisle A"
+      },
+      "pricing": {
+        "sku": "CC-HOOD-NAVY",
+        "unit_cost": 22.0,
+        "list_price": 58.0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-14T23:59:46.436125+00:00",
+    "run_id": "6c642302-b524-4842-b3dc-96724d0d3ca8",
+    "event_type": "run_failed",
+    "actor": "Boss",
+    "action": "Campus Customs review failed for ticket 103",
+    "ticket_id": 103,
+    "error": "unhandled errors in a TaskGroup (1 sub-exception)"
+  },
+  {
+    "timestamp": "2026-10-15T00:05:04.797879+00:00",
+    "run_id": "0b806846-81fc-4af9-b508-35ca33f243bf",
+    "event_type": "run_started",
+    "actor": "Boss",
+    "action": "Started Campus Customs review for ticket 101",
+    "ticket_id": 101,
+    "model": "openai:gpt-4o-mini"
+  },
+  {
+    "timestamp": "2026-10-15T00:05:06.606375+00:00",
+    "run_id": "0b806846-81fc-4af9-b508-35ca33f243bf",
+    "event_type": "tool_call",
+    "actor": "Boss",
+    "action": "Called MCP tool get_ticket_101_tee_reprint_context",
+    "tool_name": "get_ticket_101_tee_reprint_context",
+    "arguments": {}
+  },
+  {
+    "timestamp": "2026-10-15T00:05:06.627015+00:00",
+    "run_id": "0b806846-81fc-4af9-b508-35ca33f243bf",
+    "event_type": "tool_result",
+    "actor": "Boss",
+    "action": "Received result from MCP tool get_ticket_101_tee_reprint_context",
+    "tool_name": "get_ticket_101_tee_reprint_context",
+    "output": {
+      "ticket": {
+        "id": 101,
+        "type": "customer_order",
+        "requester": "Tauhid Zaman",
+        "subject": "Bulldog tee",
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "qty": 1,
+        "lease_id": null,
+        "invoice_id": 501,
+        "status": "open",
+        "notes": "Needs a tee in size S.",
+        "created_at": "2026-08-31T09:15:00-04:00"
+      },
+      "inventory": {
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty": 0,
+        "location": "Aisle B"
+      },
+      "pricing": {
+        "sku": "CC-TEE-WHITE",
+        "unit_cost": 8.0,
+        "list_price": 28.0
+      },
+      "invoice": {
+        "id": 501,
+        "vendor_id": 1,
+        "amount": 840.0,
+        "due_date": "2026-08-28",
+        "status": "open",
+        "description": "Rush reprint CC-TEE-WHITE S"
+      },
+      "vendor": {
+        "id": 1,
+        "name": "Bulldog Print Co",
+        "specialty": "apparel reprint",
+        "lead_days": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-15T00:05:06.630074+00:00",
+    "run_id": "0b806846-81fc-4af9-b508-35ca33f243bf",
+    "event_type": "agent_action",
+    "actor": "Boss",
+    "action": "Reviewed MCP context for ticket 101",
+    "ticket_context": {
+      "ticket": {
+        "id": 101,
+        "type": "customer_order",
+        "requester": "Tauhid Zaman",
+        "subject": "Bulldog tee",
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "qty": 1,
+        "lease_id": null,
+        "invoice_id": 501,
+        "status": "open",
+        "notes": "Needs a tee in size S.",
+        "created_at": "2026-08-31T09:15:00-04:00"
+      },
+      "inventory": {
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty": 0,
+        "location": "Aisle B"
+      },
+      "pricing": {
+        "sku": "CC-TEE-WHITE",
+        "unit_cost": 8.0,
+        "list_price": 28.0
+      },
+      "invoice": {
+        "id": 501,
+        "vendor_id": 1,
+        "amount": 840.0,
+        "due_date": "2026-08-28",
+        "status": "open",
+        "description": "Rush reprint CC-TEE-WHITE S"
+      },
+      "vendor": {
+        "id": 1,
+        "name": "Bulldog Print Co",
+        "specialty": "apparel reprint",
+        "lead_days": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-15T00:05:07.244906+00:00",
+    "run_id": "0b806846-81fc-4af9-b508-35ca33f243bf",
+    "event_type": "run_failed",
+    "actor": "Boss",
+    "action": "Campus Customs review failed for ticket 101",
+    "ticket_id": 101,
+    "error": "unhandled errors in a TaskGroup (1 sub-exception)"
+  },
+  {
+    "timestamp": "2026-10-15T00:28:36.674975+00:00",
+    "run_id": "70e64383-08f8-4f2a-8fc3-2426ba87a2d8",
+    "event_type": "run_started",
+    "actor": "Boss",
+    "action": "Started Campus Customs review for ticket 101",
+    "ticket_id": 101,
+    "model": "gpt-6-luna"
+  },
+  {
+    "timestamp": "2026-10-15T00:28:38.867191+00:00",
+    "run_id": "70e64383-08f8-4f2a-8fc3-2426ba87a2d8",
+    "event_type": "tool_call",
+    "actor": "Boss",
+    "action": "Called MCP tool get_ticket_101_tee_reprint_context",
+    "tool_name": "get_ticket_101_tee_reprint_context",
+    "arguments": {}
+  },
+  {
+    "timestamp": "2026-10-15T00:28:38.899352+00:00",
+    "run_id": "70e64383-08f8-4f2a-8fc3-2426ba87a2d8",
+    "event_type": "tool_result",
+    "actor": "Boss",
+    "action": "Received result from MCP tool get_ticket_101_tee_reprint_context",
+    "tool_name": "get_ticket_101_tee_reprint_context",
+    "output": {
+      "ticket": {
+        "id": 101,
+        "type": "customer_order",
+        "requester": "Tauhid Zaman",
+        "subject": "Bulldog tee",
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "qty": 1,
+        "lease_id": null,
+        "invoice_id": 501,
+        "status": "open",
+        "notes": "Needs a tee in size S.",
+        "created_at": "2026-08-31T09:15:00-04:00"
+      },
+      "inventory": {
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty": 0,
+        "location": "Aisle B"
+      },
+      "pricing": {
+        "sku": "CC-TEE-WHITE",
+        "unit_cost": 8.0,
+        "list_price": 28.0
+      },
+      "invoice": {
+        "id": 501,
+        "vendor_id": 1,
+        "amount": 840.0,
+        "due_date": "2026-08-28",
+        "status": "open",
+        "description": "Rush reprint CC-TEE-WHITE S"
+      },
+      "vendor": {
+        "id": 1,
+        "name": "Bulldog Print Co",
+        "specialty": "apparel reprint",
+        "lead_days": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-15T00:28:38.903372+00:00",
+    "run_id": "70e64383-08f8-4f2a-8fc3-2426ba87a2d8",
+    "event_type": "agent_action",
+    "actor": "Boss",
+    "action": "Reviewed MCP context for ticket 101",
+    "ticket_context": {
+      "ticket": {
+        "id": 101,
+        "type": "customer_order",
+        "requester": "Tauhid Zaman",
+        "subject": "Bulldog tee",
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "qty": 1,
+        "lease_id": null,
+        "invoice_id": 501,
+        "status": "open",
+        "notes": "Needs a tee in size S.",
+        "created_at": "2026-08-31T09:15:00-04:00"
+      },
+      "inventory": {
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty": 0,
+        "location": "Aisle B"
+      },
+      "pricing": {
+        "sku": "CC-TEE-WHITE",
+        "unit_cost": 8.0,
+        "list_price": 28.0
+      },
+      "invoice": {
+        "id": 501,
+        "vendor_id": 1,
+        "amount": 840.0,
+        "due_date": "2026-08-28",
+        "status": "open",
+        "description": "Rush reprint CC-TEE-WHITE S"
+      },
+      "vendor": {
+        "id": 1,
+        "name": "Bulldog Print Co",
+        "specialty": "apparel reprint",
+        "lead_days": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-15T00:28:43.470030+00:00",
+    "run_id": "70e64383-08f8-4f2a-8fc3-2426ba87a2d8",
+    "event_type": "run_failed",
+    "actor": "Boss",
+    "action": "Campus Customs review failed for ticket 101",
+    "ticket_id": 101,
+    "error": "unhandled errors in a TaskGroup (1 sub-exception)"
+  },
+  {
+    "timestamp": "2026-10-15T00:29:57.308409+00:00",
+    "run_id": "54e49e49-3210-42b1-83d2-c8f45ddba52e",
+    "event_type": "run_started",
+    "actor": "Boss",
+    "action": "Started Campus Customs review for ticket 101",
+    "ticket_id": 101,
+    "model": "gpt-6-luna"
+  },
+  {
+    "timestamp": "2026-10-15T00:29:59.192098+00:00",
+    "run_id": "54e49e49-3210-42b1-83d2-c8f45ddba52e",
+    "event_type": "tool_call",
+    "actor": "Boss",
+    "action": "Called MCP tool get_ticket_101_tee_reprint_context",
+    "tool_name": "get_ticket_101_tee_reprint_context",
+    "arguments": {}
+  },
+  {
+    "timestamp": "2026-10-15T00:29:59.220260+00:00",
+    "run_id": "54e49e49-3210-42b1-83d2-c8f45ddba52e",
+    "event_type": "tool_result",
+    "actor": "Boss",
+    "action": "Received result from MCP tool get_ticket_101_tee_reprint_context",
+    "tool_name": "get_ticket_101_tee_reprint_context",
+    "output": {
+      "ticket": {
+        "id": 101,
+        "type": "customer_order",
+        "requester": "Tauhid Zaman",
+        "subject": "Bulldog tee",
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "qty": 1,
+        "lease_id": null,
+        "invoice_id": 501,
+        "status": "open",
+        "notes": "Needs a tee in size S.",
+        "created_at": "2026-08-31T09:15:00-04:00"
+      },
+      "inventory": {
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty": 0,
+        "location": "Aisle B"
+      },
+      "pricing": {
+        "sku": "CC-TEE-WHITE",
+        "unit_cost": 8.0,
+        "list_price": 28.0
+      },
+      "invoice": {
+        "id": 501,
+        "vendor_id": 1,
+        "amount": 840.0,
+        "due_date": "2026-08-28",
+        "status": "open",
+        "description": "Rush reprint CC-TEE-WHITE S"
+      },
+      "vendor": {
+        "id": 1,
+        "name": "Bulldog Print Co",
+        "specialty": "apparel reprint",
+        "lead_days": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-15T00:29:59.232391+00:00",
+    "run_id": "54e49e49-3210-42b1-83d2-c8f45ddba52e",
+    "event_type": "agent_action",
+    "actor": "Boss",
+    "action": "Reviewed MCP context for ticket 101",
+    "ticket_context": {
+      "ticket": {
+        "id": 101,
+        "type": "customer_order",
+        "requester": "Tauhid Zaman",
+        "subject": "Bulldog tee",
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "qty": 1,
+        "lease_id": null,
+        "invoice_id": 501,
+        "status": "open",
+        "notes": "Needs a tee in size S.",
+        "created_at": "2026-08-31T09:15:00-04:00"
+      },
+      "inventory": {
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty": 0,
+        "location": "Aisle B"
+      },
+      "pricing": {
+        "sku": "CC-TEE-WHITE",
+        "unit_cost": 8.0,
+        "list_price": 28.0
+      },
+      "invoice": {
+        "id": 501,
+        "vendor_id": 1,
+        "amount": 840.0,
+        "due_date": "2026-08-28",
+        "status": "open",
+        "description": "Rush reprint CC-TEE-WHITE S"
+      },
+      "vendor": {
+        "id": 1,
+        "name": "Bulldog Print Co",
+        "specialty": "apparel reprint",
+        "lead_days": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-15T00:30:01.986682+00:00",
+    "run_id": "54e49e49-3210-42b1-83d2-c8f45ddba52e",
+    "event_type": "run_failed",
+    "actor": "Boss",
+    "action": "Campus Customs review failed for ticket 101",
+    "ticket_id": 101,
+    "error": "ModelHTTPError: status_code: 400, model_name: gpt-6-luna, body: {'status': 'failure', 'message': 'Following keys are not valid: openai'}"
+  },
+  {
+    "timestamp": "2026-10-15T00:32:20.843143+00:00",
+    "run_id": "55013cbf-878d-4598-9b63-d2869049853e",
+    "event_type": "run_started",
+    "actor": "Boss",
+    "action": "Started Campus Customs review for ticket 101",
+    "ticket_id": 101,
+    "model": "gpt-6-luna"
+  },
+  {
+    "timestamp": "2026-10-15T00:32:23.798915+00:00",
+    "run_id": "55013cbf-878d-4598-9b63-d2869049853e",
+    "event_type": "tool_call",
+    "actor": "Boss",
+    "action": "Called MCP tool get_ticket_101_tee_reprint_context",
+    "tool_name": "get_ticket_101_tee_reprint_context",
+    "arguments": {}
+  },
+  {
+    "timestamp": "2026-10-15T00:32:23.825631+00:00",
+    "run_id": "55013cbf-878d-4598-9b63-d2869049853e",
+    "event_type": "tool_result",
+    "actor": "Boss",
+    "action": "Received result from MCP tool get_ticket_101_tee_reprint_context",
+    "tool_name": "get_ticket_101_tee_reprint_context",
+    "output": {
+      "ticket": {
+        "id": 101,
+        "type": "customer_order",
+        "requester": "Tauhid Zaman",
+        "subject": "Bulldog tee",
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "qty": 1,
+        "lease_id": null,
+        "invoice_id": 501,
+        "status": "open",
+        "notes": "Needs a tee in size S.",
+        "created_at": "2026-08-31T09:15:00-04:00"
+      },
+      "inventory": {
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty": 0,
+        "location": "Aisle B"
+      },
+      "pricing": {
+        "sku": "CC-TEE-WHITE",
+        "unit_cost": 8.0,
+        "list_price": 28.0
+      },
+      "invoice": {
+        "id": 501,
+        "vendor_id": 1,
+        "amount": 840.0,
+        "due_date": "2026-08-28",
+        "status": "open",
+        "description": "Rush reprint CC-TEE-WHITE S"
+      },
+      "vendor": {
+        "id": 1,
+        "name": "Bulldog Print Co",
+        "specialty": "apparel reprint",
+        "lead_days": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-15T00:32:23.830048+00:00",
+    "run_id": "55013cbf-878d-4598-9b63-d2869049853e",
+    "event_type": "agent_action",
+    "actor": "Boss",
+    "action": "Reviewed MCP context for ticket 101",
+    "ticket_context": {
+      "ticket": {
+        "id": 101,
+        "type": "customer_order",
+        "requester": "Tauhid Zaman",
+        "subject": "Bulldog tee",
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "qty": 1,
+        "lease_id": null,
+        "invoice_id": 501,
+        "status": "open",
+        "notes": "Needs a tee in size S.",
+        "created_at": "2026-08-31T09:15:00-04:00"
+      },
+      "inventory": {
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty": 0,
+        "location": "Aisle B"
+      },
+      "pricing": {
+        "sku": "CC-TEE-WHITE",
+        "unit_cost": 8.0,
+        "list_price": 28.0
+      },
+      "invoice": {
+        "id": 501,
+        "vendor_id": 1,
+        "amount": 840.0,
+        "due_date": "2026-08-28",
+        "status": "open",
+        "description": "Rush reprint CC-TEE-WHITE S"
+      },
+      "vendor": {
+        "id": 1,
+        "name": "Bulldog Print Co",
+        "specialty": "apparel reprint",
+        "lead_days": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-15T00:32:26.541208+00:00",
+    "run_id": "55013cbf-878d-4598-9b63-d2869049853e",
+    "event_type": "run_failed",
+    "actor": "Boss",
+    "action": "Campus Customs review failed for ticket 101",
+    "ticket_id": 101,
+    "error": "ModelHTTPError: status_code: 400, model_name: gpt-6-luna, body: {'status': 'failure', 'message': 'Following keys are not valid: openai'}"
+  },
+  {
+    "timestamp": "2026-10-15T00:33:42.211516+00:00",
+    "run_id": "7981d25d-f8da-436c-a1c6-09843defc730",
+    "event_type": "run_started",
+    "actor": "Boss",
+    "action": "Started Campus Customs review for ticket 101",
+    "ticket_id": 101,
+    "model": "gpt-6-luna"
+  },
+  {
+    "timestamp": "2026-10-15T00:33:44.985458+00:00",
+    "run_id": "7981d25d-f8da-436c-a1c6-09843defc730",
+    "event_type": "tool_call",
+    "actor": "Boss",
+    "action": "Called MCP tool get_ticket_101_tee_reprint_context",
+    "tool_name": "get_ticket_101_tee_reprint_context",
+    "arguments": {}
+  },
+  {
+    "timestamp": "2026-10-15T00:33:45.008672+00:00",
+    "run_id": "7981d25d-f8da-436c-a1c6-09843defc730",
+    "event_type": "tool_result",
+    "actor": "Boss",
+    "action": "Received result from MCP tool get_ticket_101_tee_reprint_context",
+    "tool_name": "get_ticket_101_tee_reprint_context",
+    "output": {
+      "ticket": {
+        "id": 101,
+        "type": "customer_order",
+        "requester": "Tauhid Zaman",
+        "subject": "Bulldog tee",
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "qty": 1,
+        "lease_id": null,
+        "invoice_id": 501,
+        "status": "open",
+        "notes": "Needs a tee in size S.",
+        "created_at": "2026-08-31T09:15:00-04:00"
+      },
+      "inventory": {
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty": 0,
+        "location": "Aisle B"
+      },
+      "pricing": {
+        "sku": "CC-TEE-WHITE",
+        "unit_cost": 8.0,
+        "list_price": 28.0
+      },
+      "invoice": {
+        "id": 501,
+        "vendor_id": 1,
+        "amount": 840.0,
+        "due_date": "2026-08-28",
+        "status": "open",
+        "description": "Rush reprint CC-TEE-WHITE S"
+      },
+      "vendor": {
+        "id": 1,
+        "name": "Bulldog Print Co",
+        "specialty": "apparel reprint",
+        "lead_days": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-15T00:33:45.013904+00:00",
+    "run_id": "7981d25d-f8da-436c-a1c6-09843defc730",
+    "event_type": "agent_action",
+    "actor": "Boss",
+    "action": "Reviewed MCP context for ticket 101",
+    "ticket_context": {
+      "ticket": {
+        "id": 101,
+        "type": "customer_order",
+        "requester": "Tauhid Zaman",
+        "subject": "Bulldog tee",
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "qty": 1,
+        "lease_id": null,
+        "invoice_id": 501,
+        "status": "open",
+        "notes": "Needs a tee in size S.",
+        "created_at": "2026-08-31T09:15:00-04:00"
+      },
+      "inventory": {
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty": 0,
+        "location": "Aisle B"
+      },
+      "pricing": {
+        "sku": "CC-TEE-WHITE",
+        "unit_cost": 8.0,
+        "list_price": 28.0
+      },
+      "invoice": {
+        "id": 501,
+        "vendor_id": 1,
+        "amount": 840.0,
+        "due_date": "2026-08-28",
+        "status": "open",
+        "description": "Rush reprint CC-TEE-WHITE S"
+      },
+      "vendor": {
+        "id": 1,
+        "name": "Bulldog Print Co",
+        "specialty": "apparel reprint",
+        "lead_days": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-15T00:33:45.917961+00:00",
+    "run_id": "7981d25d-f8da-436c-a1c6-09843defc730",
+    "event_type": "run_failed",
+    "actor": "Boss",
+    "action": "Campus Customs review failed for ticket 101",
+    "ticket_id": 101,
+    "error": "ModelHTTPError: status_code: 400, model_name: gpt-6-luna, body: {'status': 'failure', 'message': 'Following keys are not valid: openai'}"
+  }
+]

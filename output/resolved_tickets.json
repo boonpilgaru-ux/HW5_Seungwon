@@ -1,0 +1,39 @@
+{
+  "run_state": "blocked",
+  "blocker": "OPENAI_API_KEY is not configured for the backend. The default model is openai:gpt-4o-mini.",
+  "starting_checking_balance": 3400.0,
+  "ending_checking_balance": 3400.0,
+  "cash_changed": false,
+  "tickets": [
+    {
+      "id": 101,
+      "final_status": "open",
+      "short_result": "Boss fetched the ticket context through MCP, then the model run failed before specialist delegation.",
+      "agents": [
+        {
+          "name": "Boss",
+          "actions": ["Started ticket review", "Read ticket context", "Run failed before delegation"],
+          "delegated_to": []
+        }
+      ],
+      "mcp_tools": ["get_ticket_101_tee_reprint_context"],
+      "human_approvals": []
+    },
+    {
+      "id": 102,
+      "final_status": "open",
+      "short_result": "Not run after ticket 101 could not initialize its model request.",
+      "agents": [],
+      "mcp_tools": [],
+      "human_approvals": []
+    },
+    {
+      "id": 103,
+      "final_status": "open",
+      "short_result": "Not run after reset because ticket 101 could not initialize its model request. Earlier pre-reset activity is excluded.",
+      "agents": [],
+      "mcp_tools": [],
+      "human_approvals": []
+    }
+  ]
+}

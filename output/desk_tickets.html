@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Campus Customs | Desk Tickets</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #203232;
+      --muted: #647573;
+      --paper: #ffffff;
+      --ground: #f1f4f0;
+      --line: #dbe3de;
+      --pine: #176c63;
+      --pine-dark: #104e49;
+      --rust: #a9583c;
+      --gold: #b88635;
+      --soft-pine: #e8f1ed;
+      --soft-rust: #f5ebe6;
+      --soft-gold: #f6f0e3;
+      --display: Georgia, "Palatino Linotype", serif;
+      --body: "Trebuchet MS", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background-color: var(--ground);
+      background-image: repeating-linear-gradient(0deg, transparent 0 35px, rgba(32, 50, 50, .025) 35px 36px);
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    button { font: inherit; }
+
+    .masthead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 30px 34px 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .identity { display: flex; align-items: center; gap: 15px; }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--pine-dark);
+      color: white;
+      background: var(--pine);
+      font-family: var(--display);
+      font-size: 16px;
+    }
+
+    .eyebrow {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    .phase {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 12px;
+      border: 1px solid #d8c9a8;
+      color: #76591f;
+      background: var(--soft-gold);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .phase-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 34px 48px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      padding: 0 0 12px;
+      border-bottom: 1px solid var(--line);
+      scrollbar-width: thin;
+    }
+
+    .tab {
+      position: relative;
+      flex: 0 0 auto;
+      min-width: 118px;
+      padding: 12px 16px 13px;
+      border: 0;
+      color: var(--muted);
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .tab::after {
+      position: absolute;
+      right: 12px;
+      bottom: -13px;
+      left: 12px;
+      height: 3px;
+      background: transparent;
+      content: "";
+    }
+
+    .tab[aria-selected="true"] { color: var(--pine-dark); }
+    .tab[aria-selected="true"]::after { background: var(--pine); }
+    .tab:hover { color: var(--ink); background: rgba(255, 255, 255, .56); }
+    .tab:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
+
+    .tab-number {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--rust);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .tab-label { display: block; font-weight: 700; }
+
+    .panel { padding-top: 28px; animation: arrive .22s ease-out; }
+    .panel[hidden] { display: none; }
+
+    @keyframes arrive {
+      from { opacity: .55; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .ticket-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 0 0 18px;
+    }
+
+    .ticket-heading .eyebrow { color: var(--rust); }
+
+    h2 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: 27px;
+      font-weight: 500;
+      line-height: 1.15;
+    }
+
+    .ticket-status {
+      padding: 5px 10px;
+      border: 1px solid #d7dfda;
+      color: #4e625d;
+      background: #f8faf8;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .work-sheet {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(240px, .8fr);
+      min-height: 450px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      box-shadow: 0 12px 28px rgba(30, 52, 49, .055);
+    }
+
+    .expected, .actual { padding: 26px 28px; }
+
+    .actual {
+      border-left: 1px solid var(--line);
+      background: #fbfcfa;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 21px;
+      color: var(--pine-dark);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .section-label::before {
+      width: 18px;
+      height: 2px;
+      background: var(--pine);
+      content: "";
+    }
+
+    .actual .section-label { color: var(--muted); }
+    .actual .section-label::before { background: #a9b6b0; }
+
+    .first-call {
+      position: relative;
+      margin-bottom: 24px;
+      padding: 16px 18px 17px;
+      border-left: 3px solid var(--rust);
+      background: var(--soft-rust);
+    }
+
+    .first-call .eyebrow { margin-bottom: 5px; color: var(--rust); }
+
+    h3 {
+      margin: 0 0 6px;
+      font-family: var(--display);
+      font-size: 21px;
+      font-weight: 500;
+    }
+
+    .first-call p { max-width: 660px; margin: 0; color: #485958; }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(210px, .86fr);
+      gap: 24px;
+    }
+
+    .detail-title {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .delegations {
+      display: grid;
+      gap: 11px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: delegation;
+    }
+
+    .delegations li {
+      position: relative;
+      min-height: 31px;
+      padding: 1px 0 0 36px;
+      color: #435553;
+      counter-increment: delegation;
+    }
+
+    .delegations li::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: grid;
+      place-items: center;
+      width: 23px;
+      height: 23px;
+      border: 1px solid #cad9d2;
+      border-radius: 50%;
+      color: var(--pine-dark);
+      background: var(--soft-pine);
+      font-size: 11px;
+      font-weight: 700;
+      content: counter(delegation, decimal-leading-zero);
+    }
+
+    .delegations strong { color: var(--ink); }
+
+    .tool-list {
+      display: grid;
+      align-content: start;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tool-list li {
+      padding: 9px 10px;
+      border: 1px solid #e0e7e2;
+      background: #f8faf8;
+    }
+
+    code {
+      color: #185d55;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .tool-note { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
+
+    .actual-blank {
+      min-height: 355px;
+      border: 1px dashed #d4ddd7;
+      background: repeating-linear-gradient(135deg, #fbfcfa 0 13px, #f8faf8 13px 14px);
+    }
+
+    .actual-note {
+      padding: 15px 16px;
+      border: 1px solid #e6d3a6;
+      border-left: 3px solid var(--gold);
+      color: #53615d;
+      background: #fffaf0;
+      font-size: 13px;
+    }
+
+    .actual-note p:last-child { margin-bottom: 0; }
+    .actual-note strong { color: var(--ink); }
+    .actual-label {
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 3px 7px;
+      border: 1px solid #d8c9a8;
+      color: #76591f;
+      background: var(--soft-gold);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .cash-ledger { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .cash-ledger th, .cash-ledger td { padding: 13px 16px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .cash-ledger th { color: var(--muted); background: #f7faf8; font-size: 10px; text-transform: uppercase; }
+    .cash-ledger td:last-child, .cash-ledger th:last-child { text-align: right; white-space: nowrap; }
+    .cash-ledger .cash-total td { color: var(--pine-dark); background: var(--soft-pine); font-weight: 700; }
+    .cash-caveat { margin: 14px 16px; color: var(--muted); font-size: 12px; }
+
+    .later-panel {
+      min-height: 480px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      box-shadow: 0 12px 28px rgba(30, 52, 49, .055);
+    }
+
+    .later-panel h2 { padding: 25px 28px; border-bottom: 1px solid var(--line); }
+    .later-blank { min-height: 400px; }
+    .reflection-content { display: grid; gap: 14px; padding: 24px 28px 30px; }
+    .reflection-answer { padding: 16px 18px; border: 1px solid var(--line); border-left: 3px solid var(--pine); background: #fbfcfa; }
+    .reflection-answer h3 { margin: 0 0 9px; color: var(--pine-dark); font-size: 15px; line-height: 1.45; }
+    .reflection-answer p { margin: 0; color: #53615d; font-size: 13px; line-height: 1.65; }
+    .reflection-answer p + p { margin-top: 8px; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 760px) {
+      .masthead { align-items: flex-start; padding: 24px 19px 20px; }
+      .phase { padding: 7px 9px; }
+      main { padding: 20px 16px 36px; }
+      .work-sheet { grid-template-columns: 1fr; }
+      .expected, .actual { padding: 22px 20px; }
+      .actual { border-top: 1px solid var(--line); border-left: 0; }
+      .actual-blank { min-height: 150px; }
+      .detail-grid { grid-template-columns: 1fr; gap: 22px; }
+      .later-panel { min-height: 400px; }
+      .reflection-content { padding: 18px 20px 22px; }
+    }
+
+    @media (max-width: 470px) {
+      .masthead { gap: 10px; }
+      .identity { gap: 10px; }
+      .brand-mark { width: 38px; height: 38px; }
+      h1 { font-size: 26px; }
+      .phase { font-size: 10px; }
+      .ticket-heading { align-items: flex-start; }
+      h2 { font-size: 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="identity">
+      <div class="brand-mark" aria-hidden="true">CC</div>
+      <div>
+        <p class="eyebrow">Campus Customs / Operations</p>
+        <h1>Desk tickets</h1>
+      </div>
+    </div>
+    <div class="phase"><span class="phase-dot" aria-hidden="true"></span>Run paused: model credentials</div>
+  </header>
+
+  <main>
+    <nav class="tabs" role="tablist" aria-label="Desk workspaces">
+      <button class="tab" id="tab-101" type="button" role="tab" aria-selected="true" aria-controls="panel-101" tabindex="0">
+        <span class="tab-number">Ticket 101</span><span class="tab-label">Bulldog tee</span>
+      </button>
+      <button class="tab" id="tab-102" type="button" role="tab" aria-selected="false" aria-controls="panel-102" tabindex="-1">
+        <span class="tab-number">Ticket 102</span><span class="tab-label">Rent notice</span>
+      </button>
+      <button class="tab" id="tab-103" type="button" role="tab" aria-selected="false" aria-controls="panel-103" tabindex="-1">
+        <span class="tab-number">Ticket 103</span><span class="tab-label">Bulk hoodies</span>
+      </button>
+      <button class="tab" id="tab-cash" type="button" role="tab" aria-selected="false" aria-controls="panel-cash" tabindex="-1">
+        <span class="tab-number">Workspace</span><span class="tab-label">Cash</span>
+      </button>
+      <button class="tab" id="tab-reflection" type="button" role="tab" aria-selected="false" aria-controls="panel-reflection" tabindex="-1">
+        <span class="tab-number">Workspace</span><span class="tab-label">Reflection</span>
+      </button>
+    </nav>
+
+    <section class="panel" id="panel-101" role="tabpanel" aria-labelledby="tab-101" tabindex="0">
+      <div class="ticket-heading">
+        <div><p class="eyebrow">101 / Customer order</p><h2>Bulldog tee</h2></div>
+        <span class="ticket-status">Open</span>
+      </div>
+      <div class="work-sheet">
+        <section class="expected" aria-labelledby="expected-101">
+          <h3 class="section-label" id="expected-101">Expected</h3>
+          <div class="first-call">
+            <p class="eyebrow">Boss calls first</p>
+            <h3>Inventory</h3>
+            <p>Ticket 101 requests one size-S tee, and the recorded stock is zero. Confirm the shortage before considering a reprint or customer response.</p>
+          </div>
+          <div class="detail-grid">
+            <div>
+              <h4 class="detail-title">Expected delegations</h4>
+              <ol class="delegations">
+                <li><strong>Inventory</strong> verifies the size-S stock and location.</li>
+                <li><strong>Accounting</strong> reviews invoice 501 and its vendor details; no payment is made.</li>
+                <li><strong>Customer Service</strong> prepares an internal, fact-based response recommendation.</li>
+              </ol>
+            </div>
+            <div>
+              <h4 class="detail-title">Expected MCP tools</h4>
+              <ul class="tool-list">
+                <li><code>get_ticket_101_tee_reprint_context</code><span class="tool-note">Shared context for the ticket, stock, pricing, invoice, and vendor.</span></li>
+                <li><code>append_ticket_note</code><span class="tool-note">Optional internal recommendation after review.</span></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="actual" aria-labelledby="actual-101">
+          <h3 class="section-label" id="actual-101">Actual</h3>
+          <div class="actual-note">
+            <span class="actual-label">Run blocked before delegation</span>
+            <p><strong>Boss</strong> started the review and used <code>get_ticket_101_tee_reprint_context</code> to read the ticket, zero size-S stock, invoice 501, and vendor details.</p>
+            <p><strong>Delegations:</strong> none. The model request failed before any specialist ran because the backend has no configured <code>OPENAI_API_KEY</code>.</p>
+            <p><strong>Cash:</strong> unchanged at $3,400. No payment or purchase proposal was created; no human approval was requested.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-102" role="tabpanel" aria-labelledby="tab-102" tabindex="0" hidden>
+      <div class="ticket-heading">
+        <div><p class="eyebrow">102 / Rent notice</p><h2>Chapel Street shop</h2></div>
+        <span class="ticket-status">Open</span>
+      </div>
+      <div class="work-sheet">
+        <section class="expected" aria-labelledby="expected-102">
+          <h3 class="section-label" id="expected-102">Expected</h3>
+          <div class="first-call">
+            <p class="eyebrow">Boss calls first</p>
+            <h3>Facilities</h3>
+            <p>The notice says rent is due in two days. Facilities should match it to lease 1 and the recorded desk date before any financial action is considered.</p>
+          </div>
+          <div class="detail-grid">
+            <div>
+              <h4 class="detail-title">Expected delegations</h4>
+              <ol class="delegations">
+                <li><strong>Facilities</strong> verifies the landlord, lease, amount, and next due date.</li>
+                <li><strong>Accounting</strong> reviews the recorded obligation and flags that payment requires human approval.</li>
+              </ol>
+            </div>
+            <div>
+              <h4 class="detail-title">Expected MCP tools</h4>
+              <ul class="tool-list">
+                <li><code>get_ticket_102_rent_lease_context</code><span class="tool-note">Shared notice, lease, and desk-date context.</span></li>
+                <li><code>append_ticket_note</code><span class="tool-note">Optional internal recommendation after review.</span></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="actual" aria-labelledby="actual-102">
+          <h3 class="section-label" id="actual-102">Actual</h3>
+          <div class="actual-note">
+            <span class="actual-label">Not run</span>
+            <p>Stopped after ticket 101 could not reach specialist review. No agents were delegated, no MCP tools were called for this ticket, and no approval or cash change occurred.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-103" role="tabpanel" aria-labelledby="tab-103" tabindex="0" hidden>
+      <div class="ticket-heading">
+        <div><p class="eyebrow">103 / Price override</p><h2>Bulk hoodie request</h2></div>
+        <span class="ticket-status">Open</span>
+      </div>
+      <div class="work-sheet">
+        <section class="expected" aria-labelledby="expected-103">
+          <h3 class="section-label" id="expected-103">Expected</h3>
+          <div class="first-call">
+            <p class="eyebrow">Boss calls first</p>
+            <h3>Inventory</h3>
+            <p>The request is for 20 medium hoodies while the recorded quantity is 8. Confirm the shortfall and stored pricing before discussing the discount request.</p>
+          </div>
+          <div class="detail-grid">
+            <div>
+              <h4 class="detail-title">Expected delegations</h4>
+              <ol class="delegations">
+                <li><strong>Inventory</strong> verifies the medium-size quantity, location, cost, and list price.</li>
+                <li><strong>Customer Service</strong> prepares an internal response recommendation; any discount remains subject to human approval.</li>
+              </ol>
+            </div>
+            <div>
+              <h4 class="detail-title">Expected MCP tools</h4>
+              <ul class="tool-list">
+                <li><code>get_ticket_103_bulk_hoodie_context</code><span class="tool-note">Request, matching hoodie inventory, and pricing.</span></li>
+                <li><code>append_ticket_note</code><span class="tool-note">Optional internal recommendation after review.</span></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="actual" aria-labelledby="actual-103">
+          <h3 class="section-label" id="actual-103">Actual</h3>
+          <div class="actual-note">
+            <span class="actual-label">Not run after reset</span>
+            <p>Stopped after ticket 101 could not reach specialist review. No post-reset agents were delegated, no MCP tools were called for this ticket, and no approval or cash change occurred. The earlier pre-reset test is not counted here.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-cash" role="tabpanel" aria-labelledby="tab-cash" tabindex="0" hidden>
+      <div class="later-panel">
+        <h2>Cash</h2>
+        <table class="cash-ledger">
+          <thead><tr><th>Item</th><th>Cash movement</th><th>Checking</th></tr></thead>
+          <tbody>
+            <tr><td>Starting balance after reset</td><td>Original database value</td><td>$3,400.00</td></tr>
+            <tr><td>Ticket 101</td><td>Run failed before proposal; no payment or purchase</td><td>$0.00</td></tr>
+            <tr><td>Ticket 102</td><td>Not run; no payment or purchase</td><td>$0.00</td></tr>
+            <tr><td>Ticket 103</td><td>Not run after reset; no payment or purchase</td><td>$0.00</td></tr>
+            <tr class="cash-total"><td>Current ending balance</td><td>Verified against <code>cash_accounts</code></td><td>$3,400.00</td></tr>
+          </tbody>
+        </table>
+        <p class="cash-caveat">No human approval was requested and no cash was changed. This is a partial run record; tickets 101–103 remain open.</p>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-reflection" role="tabpanel" aria-labelledby="tab-reflection" tabindex="0" hidden>
+      <div class="later-panel">
+        <h2>Reflection</h2>
+        <div class="reflection-content">
+          <section class="reflection-answer" aria-labelledby="reflection-q1">
+            <h3 id="reflection-q1">1. How would you evaluate the performance of the agents on each ticket and why?</h3>
+            <p>Unfortunately, I could not run it, it was saying &quot;Run Blocked Before Delegation&quot;</p>
+            <p>But, I think it will work well as intended. Boss will call correct agents.</p>
+          </section>
+          <section class="reflection-answer" aria-labelledby="reflection-q2">
+            <h3 id="reflection-q2">2. For each ticket, how did actual compare to the expected plan you wrote earlier?</h3>
+            <p>Unfortunately, I could not run it, it was saying &quot;Run Blocked Before Delegation&quot;</p>
+          </section>
+          <section class="reflection-answer" aria-labelledby="reflection-q3">
+            <h3 id="reflection-q3">3. What would have been simpler as one agent with tools — and why?</h3>
+            <p>If the task is simple, we don't need multi-agents. Because multi-agents will consume more tokens and add processes, while not giving effectiveness of the tasks</p>
+          </section>
+          <section class="reflection-answer" aria-labelledby="reflection-q4">
+            <h3 id="reflection-q4">4. Describe three new problems Campus Customs might face that this agent team could solve with the tools you built.</h3>
+            <p>1) stock shortage check<br>2) overdue invoice check<br>3) bulk-order discount request analysis</p>
+          </section>
+          <section class="reflection-answer" aria-labelledby="reflection-q5">
+            <h3 id="reflection-q5">5. Describe three new problems Campus Customs might face that this agent team could not solve with the tools you built, and explain the tools and agents you would need to solve them.</h3>
+            <p>1) ordering new inventory to suppliers -&gt; We need ordering agents<br>2) setting pricing strategy -&gt; we need demand/past sales analysis agent and strategy agent<br>3) predicting future demand -&gt; we need demand/past sales analysis agent</p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+
+    function activateTab(tab, moveFocus = false) {
+      tabs.forEach((item) => {
+        const selected = item === tab;
+        item.setAttribute("aria-selected", String(selected));
+        item.tabIndex = selected ? 0 : -1;
+        document.getElementById(item.getAttribute("aria-controls")).hidden = !selected;
+      });
+      if (moveFocus) tab.focus();
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => activateTab(tab));
+      tab.addEventListener("keydown", (event) => {
+        let nextIndex = index;
+        if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
+        else if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabs.length) % tabs.length;
+        else if (event.key === "Home") nextIndex = 0;
+        else if (event.key === "End") nextIndex = tabs.length - 1;
+        else return;
+        event.preventDefault();
+        activateTab(tabs[nextIndex], true);
+      });
+    });
+
+  </script>
+</body>
+</html>
